@@ -4,7 +4,7 @@ def get_mask_card_number(card_number: str) -> str:
     return card_number[:4] + " " + card_number[4:6] + "**" + " **** " + card_number[11:16]
 
 
-def get_mask_account(account_number: str) -> str:
+def get_mask_account_number(account_number: str) -> str:
     """Принимает на вход номер счета в формате 73654108430135874305,
     и возвращает его маску в формате - **4305"""
     return "**" + account_number[-4:]
