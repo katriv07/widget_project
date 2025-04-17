@@ -4,7 +4,7 @@ from src.widget import get_date
 
 
 def filter_by_state(operations: List[Dict], state: str = "EXECUTED") -> Union[List, str]:
-    """Функция фильтрует операций в списке по ключу 'state'"""
+    """Фильтрует операций в списке по ключу 'state'"""
     list_of_operation = [operation for operation in operations if operation.get("state", "UNKNOWN") == state]
     unknown_status_list = [operation for operation in operations if operation.get("state", "UNKNOWN") == "UNKNOWN"]
     if len(operations) == 0:
@@ -18,7 +18,7 @@ def filter_by_state(operations: List[Dict], state: str = "EXECUTED") -> Union[Li
 
 
 def sort_by_date(operations: List[Dict], flow: bool = True) -> Union[List, str]:
-    """Функция сортирует операции по дате"""
+    """Сортирует операции по дате"""
     unknown_date_list: list = [operation for operation in operations if operation.get("date", "UNKNOWN") == "UNKNOWN"]
     filter_by_wrong_date_list: list = [
         operation
