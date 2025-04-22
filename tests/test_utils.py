@@ -1,3 +1,4 @@
+from typing import Any, Dict, List
 from unittest.mock import mock_open, patch
 
 import pytest
@@ -14,6 +15,7 @@ from src.utils import get_transactions
         ("invalid", []),
     ],
 )
-def test_get_transactions(content, expected):
+def test_get_transactions(content: str, expected: List[Dict[str, Any]]) -> None:
+    """Тестирует функцию get_transactions."""
     with patch("builtins.open", mock_open(read_data=content)):
         assert get_transactions("any_path") == expected
