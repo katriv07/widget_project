@@ -1,3 +1,7 @@
+from pathlib import Path
+from typing import Any, Dict, List
+
+import pandas as pd
 import pytest
 
 
@@ -208,3 +212,38 @@ def descriptions1() -> list:
 @pytest.fixture
 def descriptions3() -> list:
     return ["Ошибка! Отсутствует описание транзакции", "Перевод со счета на счет"]
+
+
+@pytest.fixture
+def mock_csv_data() -> str:
+    """Фикстура с тестовыми CSV данными"""
+    return """Date,Amount,Description
+2023-01-01,100,Salary
+2023-01-02,-50,Groceries"""
+
+
+@pytest.fixture
+def mock_transactions() -> List[Dict[str, Any]]:
+    """Фикстура с тестовыми транзакциями"""
+    return [
+        {"Date": "2023-01-01", "Amount": 100, "Description": "Salary"},
+        {"Date": "2023-01-02", "Amount": -50, "Description": "Groceries"},
+    ]
+
+
+@pytest.fixture
+def mock_df(mock_transactions: List[Dict[str, Any]]) -> pd.DataFrame:
+    """Фикстура с DataFrame тестовых транзакций"""
+    return pd.DataFrame(mock_transactions)
+
+
+@pytest.fixture
+def csv_file_path() -> Path:
+    """Путь к тестовому CSV файлу"""
+    return Path(__file__).parent.parent / "data" / "transactions.csv"
+
+
+@pytest.fixture
+def excel_file_path() -> Path:
+    """Путь к тестовому Excel файлу"""
+    return Path(__file__).parent.parent / "data" / "transactions_excel.xlsx"
