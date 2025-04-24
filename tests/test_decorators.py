@@ -1,5 +1,6 @@
 import os
 import tempfile
+from typing import Union
 
 import pytest
 
@@ -27,7 +28,7 @@ def test_log_2(capsys: pytest.CaptureFixture[str]) -> None:
     """тест для декоратора log - вывод в консоль, ошибка (вар.1)"""
 
     @log()
-    def division_nums(x: int, y: int) -> int | float:
+    def division_nums(x: int, y: int) -> Union[int, float, str]:  # Обновлено
         return x / y
 
     division_nums(1, 0)
@@ -45,7 +46,7 @@ def test_log_3(capsys: pytest.CaptureFixture[str]) -> None:
     """тест для декоратора log - вывод в консоль, ошибка (вар.2)"""
 
     @log()
-    def division_nums(x: int, y: int) -> int | float:
+    def division_nums(x: int, y: int) -> Union[int, float, str]:  # Обновлено
         return x / y
 
     division_nums(1, "1")
@@ -90,7 +91,7 @@ def test_log_5() -> None:
     try:
 
         @log(filename=filename)
-        def division_nums(x: int, y: int) -> int | float:
+        def division_nums(x: int, y: int) -> Union[int, float]:  # Исправлено
             return x / y
 
         division_nums(1, 0)
